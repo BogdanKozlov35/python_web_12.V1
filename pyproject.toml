@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "python-web-12-v1"
+version = "0.1.0"
+description = ""
+authors = ["BogdanKozlov35 <bkozlov35@gmail.com>"]
+readme = "README.md"
+packages = [{include = "python_web_12"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.1"
+faker = "^26.0.0"
+alembic = "^1.13.2"
+asyncpg = "^0.29.0"
+greenlet = "^3.0.3"
+sqlalchemy = "^2.0.31"
+uvicorn = "^0.30.3"
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+bcrypt = "^4.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
