@@ -2,6 +2,18 @@
 docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD
 =123456 -d postgres
 
+або
+
+1.1. запуск  docker-compose
+        docker compose up -d
+        список запущених контейнерів
+        docker compose ps 
+
+
+docker compose build
+
+
+
 2. створення міграцій
 alembic init alembic
 alembic revision --autogenerate -m 'Init'
@@ -15,6 +27,8 @@ seeds/create_data.py
 
 uvicorn main:app --host localhost --port 8000 --reload
 
+або
+
 fastapi dev main.py
 
 5. http://127.0.0.1:8000/api/healthchecker
@@ -27,4 +41,14 @@ fastapi dev main.py
         адресою електронної пошти
         номером телефону
 
-8. secret_key "openssl rand -hex 32"
+8. secret_key - "openssl rand -hex 32"
+
+9. очистити кеш
+poetry cache clear --all pypi
+
+
+10. temp maill для тестування
+https://temp-mail.org/uk/
+
+
+

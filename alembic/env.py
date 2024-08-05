@@ -10,7 +10,7 @@ from sqlalchemy import pool
 from alembic import context
 
 from src.contacts.models import Base, Contact, Email, Phone
-from src.auth.models import User, Role
+# from src.auth.models import User, Role
 from src.conf.config import config as app_config
 
 # this is the Alembic Config object, which provides

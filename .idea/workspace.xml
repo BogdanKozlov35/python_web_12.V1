@@ -4,32 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07f9b6bb-99af-419f-896a-30425fab4c37" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/python_web_12.V1.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readmy.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/seeds/new_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/password_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/repo_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/route_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/schema_auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conf/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conf/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contacts/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contacts/repo_contacts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contacts/route_contacts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contacts/schema_contacts.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/db.py" afterDir="false" />
+    <list default="true" id="07f9b6bb-99af-419f-896a-30425fab4c37" name="Changes" comment="first commit">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/emails.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/repo_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/roles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/route_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/schemas_admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/admin/templates/verify_email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/auth/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/conf/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/1eba5f21496e_init.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readmy.md" beforeDir="false" afterPath="$PROJECT_DIR$/readmy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/seeds/new_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/seeds/new_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/password_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/password_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/repo_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/repo_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/route_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/route_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/schema_auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/schema_auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/conf/config.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/conf/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/conf/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contacts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/contacts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contacts/repo_contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/contacts/repo_contacts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contacts/route_contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/contacts/route_contacts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contacts/schema_contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/contacts/schema_contacts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +47,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -57,20 +66,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "Python.new_data.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/kozlovalex/Documents/GitHub/python_web_12.V1/src/auth"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.config.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.new_data.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kozlovalex/Documents/GitHub/python_web_12.V1/src/auth&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/auth" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/alembic" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/admin" />
     </key>
   </component>
   <component name="RunManager">
@@ -113,6 +128,23 @@
       <option name="presentableId" value="Default" />
       <updated>1721927802911</updated>
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1722241413794</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722241413794</updated>
+    </task>
+    <task id="LOCAL-00002" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1722241599170</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722241599170</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,5 +157,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
 </project>

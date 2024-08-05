@@ -4,14 +4,16 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from src.conf.config import config
 from src.contacts.models import Contact, Email, Phone, Base
-from src.auth.models import User, Role
+
 
 fake = Faker("uk-UA")
+
 
 async def create_database():
     engine = create_async_engine(config.DB_URL, future=True)
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
 
 async def populate_database():
     engine = create_async_engine(config.DB_URL, future=True)
@@ -43,9 +45,11 @@ async def populate_database():
 
         await session.commit()
 
+
 async def main():
     await create_database()
     await populate_database()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

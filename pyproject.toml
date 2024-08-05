@@ -17,7 +17,12 @@ sqlalchemy = "^2.0.31"
 uvicorn = "^0.30.3"
 python-jose = "^3.3.0"
 passlib = "^1.7.4"
-bcrypt = "^4.2.0"
+pydantic-settings = "^2.4.0"
+redis = "^5.0.8"
+fastapi-mail = "^1.4.1"
+bcrypt = "3.1.7"
+fastapi-limiter = "^0.1.6"
+cloudinary = "^1.41.0"
 
 
 [build-system]

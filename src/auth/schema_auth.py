@@ -1,5 +1,9 @@
+from typing import Optional
+
 from pydantic import BaseModel, EmailStr
 from enum import Enum
+
+from src.admin.schemas_admin import RoleResponse
 
 
 class UserSchema(BaseModel):
@@ -14,6 +18,13 @@ class UserCreate(UserSchema):
 class UserResponse(UserSchema):
     id: int
     is_active: bool
+    username: str
+    email: str
+    avatar: Optional[str] = None
+    role: Optional[RoleResponse] = None
+
+    class Config:
+        from_attributes = True
 
 
 class Token(BaseModel):
@@ -23,7 +34,7 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    username: str | None = None
+    username: Optional[str] = None
 
 
 class RoleEnum(str, Enum):
@@ -31,6 +42,11 @@ class RoleEnum(str, Enum):
     ADMIN = "Admin"
     MODERATOR = "Moderator"
 
+
 class RoleBase(BaseModel):
     id: int
     name: RoleEnum
+
+
+class RequestEmail(BaseModel):
+    email: EmailStr

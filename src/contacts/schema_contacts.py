@@ -53,5 +53,6 @@ class ContactResponse(BaseModel):
     class Config:
         from_attributes = True
 
+
 class ContactCreate(ContactSchema):
     pass

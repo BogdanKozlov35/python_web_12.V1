@@ -4,6 +4,10 @@ from sqlalchemy.orm import sessionmaker
 
 from src.conf.config import config
 
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
 
 class DatabaseSessionManager:
     def __init__(self, url: str):

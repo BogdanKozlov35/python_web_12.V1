@@ -1,10 +1,9 @@
 from sqlalchemy import String, Integer, Date, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
+from src.auth.models import User
 
-from src.auth.models import User, Role
-
-from src.conf.config import Base
+from src.database.db import Base
 
 
 class Contact(Base):
@@ -37,5 +36,7 @@ class Phone(Base):
     contact_id: Mapped[int] = mapped_column(Integer, ForeignKey('contacts.id'))
 
     contact: Mapped["Contact"] = relationship("Contact", back_populates="phones")
+
+
 
 
