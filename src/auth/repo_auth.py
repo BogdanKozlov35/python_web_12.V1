@@ -1,3 +1,4 @@
+
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -51,6 +52,15 @@ class UserRepository:
             stmt = select(User).where(User.username == username)
             result = await self.db.execute(stmt)
             return result.scalar_one_or_none()
+        except Exception as e:
+            logger.error(f"Error repo get_user: {e}")
+            await self.handle_exception(e)
+
+    async def get_email(self, username: str) -> Optional[User]:
+        try:
+            stmt = select(User.email).where(User.username == username)
+            result = await self.db.execute(stmt)
+            return result.first()
         except Exception as e:
             logger.error(f"Error repo get_user: {e}")
             await self.handle_exception(e)

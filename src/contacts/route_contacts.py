@@ -25,9 +25,9 @@ async def get_contacts(
         db: AsyncSession = Depends(get_db),
         current_user: User = Depends(auth_service.get_current_user)):
     repo = ContactRepository(db)
-    contacts = await repo.get_contacts(db, limit, offset, current_user.id)
+    contacts = await repo.get_contacts(limit, offset, current_user.id)
     for contact in contacts:
-        contact.birthday = contact.birthday.strftime("%d-%m-%Y")
+        contact.birthday = contact.birthday.strftime("%Y-%m-%d")
     return contacts
 
 
@@ -40,7 +40,7 @@ async def get_contact(contact_id: int, db: AsyncSession = Depends(get_db),
     contact = await repo.get_contact(contact_id, current_user.id)
     if contact is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contact not found")
-    contact.birthday = contact.birthday.strftime("%d-%m-%Y") if contact.birthday else None
+    contact.birthday = contact.birthday.strftime("%Y-%m-%d") if contact.birthday else None
     return contact
 
 
@@ -51,7 +51,7 @@ async def create_contact(body: ContactCreate, db: AsyncSession = Depends(get_db)
                          current_user: User = Depends(auth_service.get_current_user)):
     repo = ContactRepository(db)
     contact = await repo.create_contact(body, current_user.id)
-    contact.birthday = contact.birthday.strftime("%d-%m-%Y") if contact.birthday else None
+    contact.birthday = contact.birthday.strftime("%Y-%m-%d") if contact.birthday else None
     return contact
 
 
@@ -64,7 +64,7 @@ async def update_contact(contact_id: int, body: ContactUpdateSchema, db: AsyncSe
     contact = await repo.update_contact(contact_id, body, current_user.id)
     if contact is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contact not found")
-    contact.birthday = contact.birthday.strftime("%d-%m-%Y") if contact.birthday else None
+    contact.birthday = contact.birthday.strftime("%Y-%m-%d") if contact.birthday else None
     return contact
 
 
@@ -90,7 +90,7 @@ async def get_birthdays(limit: int = Query(10, ge=1, le=500), offset: int = Quer
     contacts = await repo.get_birthdays(limit, offset, current_user.id)
     for contact in contacts:
         if isinstance(contact.birthday, (datetime, date)):
-            contact.birthday = contact.birthday.strftime("%d-%m-%Y")
+            contact.birthday = contact.birthday.strftime("%Y-%m-%d")
     return contacts
 
 

@@ -1,3 +1,4 @@
+
 import pickle
 
 from fastapi import APIRouter, HTTPException, Depends, status, Path, Query, UploadFile, File, BackgroundTasks, Request
@@ -11,7 +12,7 @@ import cloudinary.uploader
 
 from src.admin.emails import send_email
 from src.auth.models import User
-from src.auth.schema_auth import Token, UserResponse, UserCreate
+from src.auth.schema_auth import Token, UserResponse, UserCreate, RequestEmail
 from src.auth.password_utils import verify_password
 from src.database.db import get_db
 from src.auth.repo_auth import UserRepository
@@ -58,8 +59,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
                 detail="Incorrect username or password",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        access_token = auth_service.create_access_token(data={"sub": user.username})
-        refresh_token = auth_service.create_refresh_token(data={"sub": user.username})
+        access_token = auth_service.create_access_token(data={"sub": user.email})
+        refresh_token = auth_service.create_refresh_token(data={"sub": user.email})
         return {
             "access_token": access_token,
             "refresh_token": refresh_token,
@@ -89,8 +90,8 @@ async def refresh_token(refresh_token: str, db: AsyncSession = Depends(get_db)):
                 detail="Invalid refresh token",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        access_token = auth_service.create_access_token(data={"sub": user.username})
-        refresh_token = auth_service.create_refresh_token(data={"sub": user.username})
+        access_token = auth_service.create_access_token(data={"sub": user.email})
+        refresh_token = auth_service.create_refresh_token(data={"sub": user.email})
         return {
             "access_token": access_token,
             "refresh_token": refresh_token,
@@ -105,7 +106,7 @@ async def refresh_token(refresh_token: str, db: AsyncSession = Depends(get_db)):
 async def confirmed_email(token: str, db: AsyncSession = Depends(get_db)):
     try:
         logger.info(f"Received token for confirmation: {token}")
-        email = await auth_service.get_email_from_token(token)
+        email = auth_service.get_email_from_token(token)
         logger.info(f"Decoded email from token: {email}")
         user_repo = UserRepository(db)
         user = await user_repo.get_user_by_email(email)
@@ -153,3 +154,18 @@ async def create_avatar(
     except Exception as e:
         logger.error(f"Error during avatar creation: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
+
+
+@router.post('/request_email')
+async def request_email(body: RequestEmail, background_tasks: BackgroundTasks, request: Request,
+                        db: AsyncSession = Depends(get_db)):
+    user_repo = UserRepository(db)
+    user = await user_repo.get_user_by_email(body.email)
+
+    if user.is_active:
+        return {"message": "Your email is already confirmed"}
+    if user:
+        background_tasks.add_task(send_email, user.email, user.username, str(request.base_url))
+    return {"message": "Check your email for confirmation."}
+
+
