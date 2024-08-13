@@ -36,7 +36,3 @@ class Phone(Base):
     contact_id: Mapped[int] = mapped_column(Integer, ForeignKey('contacts.id'))
 
     contact: Mapped["Contact"] = relationship("Contact", back_populates="phones")
-
-
-
-

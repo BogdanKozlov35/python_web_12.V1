@@ -24,6 +24,21 @@ async def get_contacts(
         offset: int = Query(0, ge=0),
         db: AsyncSession = Depends(get_db),
         current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Retrieves a paginated list of contacts for the current user.
+
+    :param limit: The maximum number of contacts to return.
+    :type limit: int
+    :param offset: The number of contacts to skip before starting to collect results.
+    :type offset: int
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: A list of contacts.
+    :rtype: list[ContactResponse]
+    :raises HTTPException: If an error occurs while retrieving the contacts.
+    """
     repo = ContactRepository(db)
     contacts = await repo.get_contacts(limit, offset, current_user.id)
     for contact in contacts:
@@ -36,6 +51,19 @@ async def get_contacts(
                           Depends(RateLimiter(times=5, seconds=60))])
 async def get_contact(contact_id: int, db: AsyncSession = Depends(get_db),
                       current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Retrieves a specific contact by its ID for the current user.
+
+    :param contact_id: The ID of the contact to retrieve.
+    :type contact_id: int
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: The contact with the specified ID.
+    :rtype: ContactResponse
+    :raises HTTPException: If the contact is not found.
+    """
     repo = ContactRepository(db)
     contact = await repo.get_contact(contact_id, current_user.id)
     if contact is None:
@@ -49,6 +77,19 @@ async def get_contact(contact_id: int, db: AsyncSession = Depends(get_db),
                            Depends(RateLimiter(times=5, seconds=60))])
 async def create_contact(body: ContactCreate, db: AsyncSession = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Creates a new contact for the current user.
+
+    :param body: The contact data to create.
+    :type body: ContactCreate
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: The newly created contact.
+    :rtype: ContactResponse
+    :raises HTTPException: If an error occurs while creating the contact.
+    """
     repo = ContactRepository(db)
     contact = await repo.create_contact(body, current_user.id)
     contact.birthday = contact.birthday.strftime("%Y-%m-%d") if contact.birthday else None
@@ -60,6 +101,21 @@ async def create_contact(body: ContactCreate, db: AsyncSession = Depends(get_db)
                           Depends(RateLimiter(times=5, seconds=60))])
 async def update_contact(contact_id: int, body: ContactUpdateSchema, db: AsyncSession = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Updates an existing contact for the current user.
+
+    :param contact_id: The ID of the contact to update.
+    :type contact_id: int
+    :param body: The updated contact data.
+    :type body: ContactUpdateSchema
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: The updated contact.
+    :rtype: ContactResponse
+    :raises HTTPException: If the contact is not found.
+    """
     repo = ContactRepository(db)
     contact = await repo.update_contact(contact_id, body, current_user.id)
     if contact is None:
@@ -73,6 +129,19 @@ async def update_contact(contact_id: int, body: ContactUpdateSchema, db: AsyncSe
                              Depends(RateLimiter(times=5, seconds=60))])
 async def delete_contact(contact_id: int, db: AsyncSession = Depends(get_db),
                          current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Deletes a contact by its ID for the current user.
+
+    :param contact_id: The ID of the contact to delete.
+    :type contact_id: int
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: No content if the contact is successfully deleted.
+    :rtype: None
+    :raises HTTPException: If the contact is not found.
+    """
     repo = ContactRepository(db)
     contact = await repo.delete_contact(contact_id, current_user.id)
     if contact is None:
@@ -86,6 +155,21 @@ async def delete_contact(contact_id: int, db: AsyncSession = Depends(get_db),
 async def get_birthdays(limit: int = Query(10, ge=1, le=500), offset: int = Query(0, ge=0),
                         db: AsyncSession = Depends(get_db),
                         current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Retrieves contacts with upcoming birthdays within the next week for the current user.
+
+    :param limit: The maximum number of contacts to return.
+    :type limit: int
+    :param offset: The number of contacts to skip before starting to collect results.
+    :type offset: int
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: A list of contacts with upcoming birthdays.
+    :rtype: list[ContactResponse]
+    :raises HTTPException: If an error occurs while retrieving the contacts.
+    """
     repo = ContactRepository(db)
     contacts = await repo.get_birthdays(limit, offset, current_user.id)
     for contact in contacts:
@@ -99,6 +183,19 @@ async def get_birthdays(limit: int = Query(10, ge=1, le=500), offset: int = Quer
                           Depends(RateLimiter(times=5, seconds=60))])
 async def search_contacts(query: str = Query(None), db: AsyncSession = Depends(get_db),
                           current_user: User = Depends(auth_service.get_current_user)):
+    """
+    Searches for contacts based on a query string for the current user.
+
+    :param query: The query string to search for.
+    :type query: str
+    :param db: The database session.
+    :type db: AsyncSession
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: A list of contacts matching the search query.
+    :rtype: list[ContactResponse]
+    :raises HTTPException: If no contacts are found matching the query.
+    """
     repo = ContactRepository(db)
     contacts = await repo.search_contacts(query, current_user.id)
     if not contacts:

@@ -9,6 +9,7 @@ load_dotenv()
 
 class Settings(BaseSettings):
     DB_URL: str
+    DB_TEST_URL: str
     SECRET_KEY_JWT: str
     ALGORITHM: str
     MAIL_USERNAME: str

@@ -17,6 +17,12 @@ class AdminRepository:
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
     async def get_all_contacts(self, limit: int, offset: int):
+        """
+        :param limit: The maximum number of contacts
+        :param offset: The offset
+         :return: List of :class:`Contact`
+        """
+
         try:
             stmt = select(Contact).offset(offset).limit(limit)
             result = await self.db.execute(stmt)

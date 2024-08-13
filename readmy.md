@@ -1,54 +1,64 @@
-1. docker контейнер для postgres : 
-docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD
-=123456 -d postgres
+# H1 "API для зберігання та управління контактами"
 
-або
+### H3 docker контейнер для postgres : 
+        ʼʼʼ
+        docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres
+        ʼʼʼ
 
-1.1. запуск  docker-compose
+    або
+
+    запуск  docker-compose
         docker compose up -d
         список запущених контейнерів
         docker compose ps 
 
-
-docker compose build
-
+        docker compose build
 
 
-2. створення міграцій
-alembic init alembic
-alembic revision --autogenerate -m 'Init'
-alembic upgrade head
+### H3 створення міграцій
+        alembic init alembic
+        alembic revision --autogenerate -m 'Init'
+        alembic upgrade head
 
-3. наповнення бази фейковими контактами:
+### H3  наповнення бази фейковими контактами:
 
-seeds/create_data.py
+        seeds/create_data.py
 
-4. запуск 
+### H3 запуск 
 
-uvicorn main:app --host localhost --port 8000 --reload
+        uvicorn main:app --host localhost --port 8000 --reload
 
-або
+        або
 
-fastapi dev main.py
-
-5. http://127.0.0.1:8000/api/healthchecker
-6. http://127.0.0.1:8000/docs
+        fastapi dev main.py
 
 
-7. пошук Query за :
+### H3 пошук Query за :
         іменем, 
         прізвищем 
         адресою електронної пошти
         номером телефону
 
-8. secret_key - "openssl rand -hex 32"
+### H3 secret_key - 
+        "openssl rand -hex 32"
 
-9. очистити кеш
-poetry cache clear --all pypi
-
-
-10. temp maill для тестування
-https://temp-mail.org/uk/
+### H3 очистити кеш
+        poetry cache clear --all pypi
 
 
+### H3 temp maill для тестування
+        https://temp-mail.org/uk/
 
+### H3 побудова документації
+        sphinx-build -M html docs/source/ docs/build/
+        або
+        make html
+### H3 запуск тестів unittest
+
+        python -m unittest tests/unit_repo_contacts.py 
+
+
+### H3 запуск pytest
+
+pytest
+pytest --cov
